@@ -23,12 +23,10 @@ goal = (9, 9)
 moves = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 def bfs(maze, start, goal):
-    
     step_counter = 0
     # Create a queue to store (current_position, path_so_far)
     queue = deque([(start, [start])])
     
-    # Keep track of visited cells to avoid revisiting
     visited = set()
     
     # Loop until queue is empty
@@ -89,9 +87,9 @@ def a_star_maze(maze, start, goal):
             nx, ny = x + dx, y + dy
             if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]) and maze[nx][ny] == 1:
                 if (nx, ny) not in visited:
-                    g += 1  # cost of each move is assumed as 1
-                    f = g + manhattanDist((nx, ny), goal)
-                    pq.put((f, path + [(nx, ny)], g))
+                    new_g = g+1  # cost of each move is assumed as 1
+                    new_f = new_g + manhattanDist((nx, ny), goal)
+                    pq.put((new_f, path + [(nx, ny)], new_g))
 
     return None
 
