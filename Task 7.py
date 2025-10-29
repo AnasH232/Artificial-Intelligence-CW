@@ -47,16 +47,12 @@ def bfs(maze, start, goal):
         
         # Explore all possible directions
         for dx, dy in moves:
-            nx, ny = x + dx, y + dy  # New coordinates
+            nx, ny = x + dx, y + dy
             
-            # Check if new position is within maze boundaries
+            # Check if new position is valid then adds to queue and path
             if 0 <= nx < len(maze) and 0 <= ny < len(maze[0]):
-                # Check if it is a path (1) and not yet visited
                 if maze[nx][ny] == 1 and (nx, ny) not in visited:
-                    # Add the new position and updated path to the queue
                     queue.append(((nx, ny), path + [(nx, ny)]))
-    
-    # If no path found, return None
     return None
 
 def manhattanDist(a,b):
@@ -101,7 +97,7 @@ def printPath(path, steps):
         
         # Mark the path with '*'
         for x, y in path:
-            if (x, y) != start and (x, y) != goal:  # Don't overwrite start and goal
+            if (x, y) != start and (x, y) != goal:
                 maze_with_path[x][y] = '*'
         
         # Mark start and goal
